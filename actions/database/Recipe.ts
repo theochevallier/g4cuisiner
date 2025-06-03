@@ -210,9 +210,17 @@ export const SelectRecipeBySlug = async (props: SlugRecipeType): Promise<Complet
             return null;
         }
         // Calculate average rating
-        const notNullRatingList = recipe.Rating.map(({ rating }) => rating).filter((rating) => rating !== null); // TODO : check if correct
+        const notNullRatingList = recipe.Rating.map(({ rating }) => rating).filter((rating) => typeof rating === "number" && rating !== null);
+
         const ratingAverage =
-            Math.trunc((notNullRatingList.reduce((acc, rate) => acc + rate, 0) / notNullRatingList.length) * 100) / 100;
+            notNullRatingList.length === 0
+                ? 0
+                : Math.round(
+                    notNullRatingList.reduce((acc, rate) => acc + rate, 0) / notNullRatingList.length
+                );
+
+        // Clamp entre 0 et 5 (au cas où)
+        const ratingAverageClamped = Math.max(0, Math.min(5, ratingAverage));
 
         const totalFavoriteAmount = recipe.Favorite.filter(({ favorite }) => favorite).length;
         const totalRatingAmount = recipe.Rating.length;
@@ -361,10 +369,15 @@ export const SelectRecipeByFilter = async (
         }
         const recipeListFormatted = recipeList.map((recipe) => {
             // Calculate average rating
-            const notNullRatingList = recipe.Rating.map(({ rating }) => rating).filter((rating) => rating !== null); // TODO : check if correct
+            const notNullRatingList = recipe.Rating
+                .map(({ rating }) => rating)
+                .filter((rating) => typeof rating === "number" && rating !== null);
             const ratingAverage =
-                Math.trunc((notNullRatingList.reduce((acc, rate) => acc + rate, 0) / notNullRatingList.length) * 100) /
-                100;
+                notNullRatingList.length === 0
+                    ? 0
+                    : Math.round(
+                        notNullRatingList.reduce((acc, rate) => acc + rate, 0) / notNullRatingList.length
+                    );
             return {
                 id: recipe.id,
                 title: recipe.title,
@@ -476,5 +489,44 @@ export const UpdateRecipeById = async (props: UpdateRecipeType): Promise<ReturnR
         console.log(error);
         return null;
         // throw new Error("UpdateRecipeById -> " + (error as Error).message);
+    }
+};
+
+export const SelectRecipeByUserId = async ( userId : string): Promise<ReturnRecipeType[] | null> => {
+    if(!userId) {
+        throw new Error("SelectRecipeByUserId -> userId is required");
+    }
+
+    try {
+        const recipeList = await Prisma.recipe.findMany({
+            where: {
+                userId,
+            },
+            orderBy: {
+                updatedAt: "desc",
+            },
+        });
+        if (recipeList.length === 0) {
+            return null;
+        }
+        return recipeList;
+    } catch (error) {
+        throw new Error("SelectRecipeByUserId -> " + (error as Error).message);
+    }
+}
+
+export const DeleteRecipeById = async (id: string): Promise<ReturnRecipeType | null> => {
+    try {
+        const recipe = await Prisma.recipe.delete({
+            where: {
+                id,
+            },
+        });
+        if (!recipe) {
+            return null;
+        }
+        return recipe;
+    } catch (error) {
+        throw new Error("DeleteRecipeById -> " + (error as Error).message);
     }
 };

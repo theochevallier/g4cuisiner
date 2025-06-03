@@ -72,6 +72,8 @@ export default function HeaderClient(props: HeaderClientProps) {
                 //     href: "/profile",
                 //     sessionActive: true,
                 // },
+                { label: "Mon profil", href: "/profile", sessionActive: true },
+                { label: "Favoris", href: "/favorites", sessionActive: true},
                 { label: "Déconnexion", href: "/logout", sessionActive: true },
             ],
         },
@@ -197,6 +199,17 @@ export default function HeaderClient(props: HeaderClientProps) {
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >
                                     Dashboard
+                                </Button>
+                            )}
+                            {(userRole !== "USER") && (
+                                <Button
+                                    type="link"
+                                    href="/profile"
+                                    variant="outline"
+                                    className="py-2"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    Profil
                                 </Button>
                             )}
                             <Button

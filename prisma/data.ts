@@ -64,6 +64,15 @@ export const userData: UserFixtures[] = [
         restricted: true,
     },
     {
+        id: "user7-id",
+        name: "Test User",
+        email: "test@test.com",
+        emailVerified: true,
+        image: null,
+        role: "USER",
+        restricted: true,
+    },
+    {
         id: "modo1-id",
         name: "Gabriel Rousseau",
         email: "gabriel.rousseau@example.com",

@@ -1,5 +1,5 @@
 import Button from "@comps/client/button";
-import ProfileClient from "./client";
+import ProfileClient, { RecipeClientTab } from "./client";
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -11,11 +11,8 @@ export default async function ProfilePage() {
 
     return (
         <>
-            <p>Cette page n&apos;est pas disponible pour le moment.</p>
-            <Button type="link" href="/" variant="outline">
-                Retour Accueil
-            </Button>
-            <ProfileClient />
+            <ProfileClient className="flex flex-col w-full gap-12 p-4 lg:flex-row" />
+            <RecipeClientTab />
         </>
     );
 }

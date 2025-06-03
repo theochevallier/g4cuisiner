@@ -47,6 +47,7 @@ model Session {
     expiresAt DateTime
     ipAddress String?
     userAgent String?
+    token String @unique
 
     // Many to One
     userId String

@@ -18,7 +18,7 @@ export const auth = betterAuth({
     session: {
         expiresIn: 60 * 30, // Session expires in 30 minutes
         updateAge: 60 * 5 // Refresh the session every 5 minutes
-    }
+    },
     // emailVerification: {
     // sendOnSignUp: true,
     // sendVerificationEmail: async (user, url, token) => {
@@ -63,18 +63,18 @@ export const auth = betterAuth({
     //     clientSecret: process.env.MICROSOFT_CLIENT_SECRET as string,
     // },
     // },
-    // user: {
-    // changeEmail: {
-    // enabled: true,
-    // sendChangeEmailVerification: async (user, newEmail, url, token) => {
-    //     await sendEmail({
-    //         to: newEmail,
-    //         subject: 'Verify your email change',
-    //         text: `Click the link to verify: ${url}`
-    //     })
-    // }
-    // }
-    // },
+    user: {
+        changeEmail: {
+            enabled: true,
+            // sendChangeEmailVerification: async ({user, newEmail, url, token}, request) => {
+            //     await sendEmail({
+            //         to: newEmail,
+            //         subject: 'Verify your email change',
+            //         text: `Click the link to verify: ${url}`
+            //     })
+            // }
+        }
+    },
     // account: {
     // accountLinking: {
     //     enabled: true,

@@ -14,7 +14,7 @@ export default async function UploadImages(props: SendImageToServerProps) {
 
         // TODO : add image validation
 
-        imageList.map(async (image, index) => {
+        imageList.forEach(async (image, index) => {
             // Convert image to buffer
             const imageBuffer = await image.arrayBuffer();
 

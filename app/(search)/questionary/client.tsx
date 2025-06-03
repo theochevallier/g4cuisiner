@@ -80,7 +80,7 @@ export default function QuestionaryClient() {
         let filtrePreparationTime: number = 0;
         let filtreLunchStep: LunchStep[] = [];
 
-        recipes.map((recipe) => {
+        recipes.forEach((recipe) => {
             //1ere question
             switch (recipe) {
                 case "Le midi":

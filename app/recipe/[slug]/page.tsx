@@ -51,6 +51,7 @@ export default async function RecipePage(props: RecipePageProps) {
         userName: authorName,
     } = recipe;
 
+    console.log(ratingAverage, totalRatingAmount);
     // Get current user session
     const session = await getSession();
 

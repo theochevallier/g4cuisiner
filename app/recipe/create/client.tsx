@@ -156,7 +156,7 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
         const imageExtensions = ["image/jpeg", "image/png", "image/webp"];
         const imageSize = 5 * 1024 * 1024; // 5MB
 
-        fileList.map((file) => {
+        fileList.forEach((file) => {
             if (file.size > imageSize) {
                 return setImportFeedback("Fichier trop volumineux");
             }
@@ -472,7 +472,7 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
                 <h2 className="text-lg font-bold">Choisir les ingrédients</h2>
                 <div className="w-full space-y-4">
                     {selectedIngredientList.length > 0 && (
-                        <div className="flex flex-row gap-3 overflow-x-auto">
+                        <div className="xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 gap-3 md:overflow-x-auto grid grid-cols-3">
                             {selectedIngredientList.map((ingredient, index) => (
                                 <div
                                     key={index}
@@ -497,8 +497,8 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
                             ))}
                         </div>
                     )}
-                    <div className="space-y-4">
-                        <div className="space-y-2">
+                    <div className="flex flex-col gap-4 md:flex-row">
+                        <div className="space-y-2 md:min-w-[400px]">
                             <Autocomplete
                                 label="Recherche d'ingrédient"
                                 aria-label="Recherche d'ingrédient"
@@ -510,7 +510,7 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
                                 ))}
                             </Autocomplete>
                         </div>
-                        <div className="space-y-2">
+                        <div className="gap-4 md:flex md:flex-row md:align-center md:items-center">
                             <div>Quantité</div>
                             <div className="flex gap-3">
                                 <label htmlFor="quantity" className="sr-only">
@@ -519,7 +519,7 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
                                 <input
                                     id="quantity"
                                     name="quantity"
-                                    className="w-full rounded border text-center outline-none ring-teal-400 ring-offset-2 transition-all duration-150 focus:ring-2"
+                                    className="w-full min-w-[50px] rounded border text-center outline-none ring-teal-400 ring-offset-2 transition-all duration-150 focus:ring-2"
                                     type="number"
                                     onChange={(e) => setQuantity(Number(e.target.value) as Quantity["quantity"])}
                                     value={quantity}
@@ -543,10 +543,12 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
                             </div>
                         </div>
 
-                        <div className="w-full text-center">
-                            <Button type="button" onClick={addIngredientToList}>
-                                Ajouter l&apos;ingrédient
-                            </Button>
+                        <div className="flex items-center justify-start">
+                            <div className="w-full text-center">
+                                <Button type="button" onClick={addIngredientToList}>
+                                    Ajouter l&apos;ingrédient
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
