@@ -318,10 +318,11 @@ export const SelectEveryRecipe = async (): Promise<SelectEveryRecipeType[] | nul
                 lunchType,
                 lunchStep,
                 slug,
-                imageList: Image.map(({ url, alt }) => ({
-                    url,
-                    alt,
-                })),
+                imageList: (Image ?? []).map(({ url, alt }) => ({ url, alt })),
+                // imageList: Image.map(({ url, alt }) => ({
+                //     url,
+                //     alt,
+                // })),
             })
         );
         return recipeListFormatted;
