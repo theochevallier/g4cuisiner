@@ -4,10 +4,24 @@
 import { SelectRecipeByFilter } from "@actions/database/Recipe";
 import QuestionCard from "@comps/client/questionnaire";
 import { useState } from "react";
-import { LunchStep, LunchType } from "@prisma/client";
 import Button from "@comps/client/button";
 import { ReturnSelectRecipeByFilterType } from "@actions/types/Recipe";
 import FindRecipeCard from "@comps/client/find-a-recipe";
+
+enum LunchType {
+  LUNCH = "LUNCH",
+  DINNER = "DINNER",
+  SNACK = "SNACK",
+  BREAKFAST = "BREAKFAST",
+  BRUNCH = "BRUNCH",
+}
+
+enum LunchStep {
+  APPETIZER = "APPETIZER",
+  STARTER = "STARTER",
+  MAIN = "MAIN",
+  DESSERT = "DESSERT",
+}
 
 export default function QuestionaryClient() {
     const [isVisible, setIsVisible] = useState(true);
