@@ -1,7 +1,6 @@
 "use client";
 
 import { DeleteRecipeById, SelectRecipeByUserId } from "@actions/database/Recipe";
-import { UpdateUser } from "@actions/database/User";
 import { ReturnRecipeType } from "@actions/types/Recipe";
 import Button from "@comps/client/button";
 import PasswordClient from "@comps/client/password";
@@ -11,7 +10,6 @@ import { changeEmail, updateUser, useSession, changePassword, signOut } from "@l
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { set } from "zod";
 
 type ProfileClientProps = {
     className?: string;
@@ -97,7 +95,7 @@ export default function ProfileClient(props : ProfileClientProps) {
             }, 1000);
         } else {
             setModeEmail("danger");
-            setMessage("Erreur lors de la mise à jour de l'email.");
+            setMessage("Erreur lors de la mise à jour de l&apos;email.");
         }
         setLoadingEmail(false);
     }
@@ -166,7 +164,7 @@ export default function ProfileClient(props : ProfileClientProps) {
                 </section>
 
                 <section className="flex w-full flex-col items-center justify-center gap-4">
-                    <h2 className="text-xl font-bold">Mettre à jour l'email</h2>
+                    <h2 className="text-xl font-bold">Mettre à jour l&apos;email</h2>
                     <p className="text-center text-xs text-gray-500">Cette action vous deconnectera.</p>
                     <label className="flex w-full flex-col gap-1">
                         Email

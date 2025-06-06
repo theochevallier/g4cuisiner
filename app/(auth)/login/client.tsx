@@ -30,7 +30,7 @@ export default function LoginClient(props: LoginClientProps) {
         const { data, error } = await signIn.email({
             email: email,
             password: password,
-            dontRememberMe: !rememberMe,
+            rememberMe: !rememberMe,
         });
 
         // Display feedback

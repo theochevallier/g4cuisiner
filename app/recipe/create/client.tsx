@@ -472,7 +472,7 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
                 <h2 className="text-lg font-bold">Choisir les ingrédients</h2>
                 <div className="w-full space-y-4">
                     {selectedIngredientList.length > 0 && (
-                        <div className="xl:grid-cols-8 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-4 gap-3 md:overflow-x-auto grid grid-cols-3">
+                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:overflow-x-auto">
                             {selectedIngredientList.map((ingredient, index) => (
                                 <div
                                     key={index}
@@ -510,7 +510,7 @@ export default function CreateRecipeClient(props: CreateRecipeClientProps) {
                                 ))}
                             </Autocomplete>
                         </div>
-                        <div className="gap-4 md:flex md:flex-row md:align-center md:items-center">
+                        <div className="md:flex md:flex-row md:items-center md:align-center gap-4">
                             <div>Quantité</div>
                             <div className="flex gap-3">
                                 <label htmlFor="quantity" className="sr-only">
